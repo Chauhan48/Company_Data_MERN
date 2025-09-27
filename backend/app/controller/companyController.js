@@ -43,4 +43,27 @@ companyController.deleteCompany = async (req, res) => {
     }
 }
 
+companyController.updateCompany = async (req, res) => {
+    try{
+        const companyData = req.body;
+        const updatedData = await companies.findByIdAndUpdate(companyData.id, 
+            {
+                name: companyData.name,
+                industry: companyData.industry,
+                location: companyData.location,
+                founded: companyData.founded,
+                employeeCount: companyData.employeeCount,
+                revenue: companyData.revenue
+            }
+        )
+
+        if(!updatedData){
+            return res.status(404).json({ message: 'Company not found' });
+        }
+        return res.status(200).json({ message: 'Data updated successfully' });
+    } catch (err) {
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
 module.exports = companyController;

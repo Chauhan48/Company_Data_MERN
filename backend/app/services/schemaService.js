@@ -13,6 +13,18 @@ joiSchema.addCompanySchema = {
     })
 }
 
+joiSchema.updateCompanySchema = {
+    body: joi.object({
+        id: joi.string().required(),
+        name: joi.string().required(),
+        industry: joi.string().required(),
+        location: joi.string().required(),
+        founded: joi.number().required(),
+        employeeCount: joi.number().required(),
+        revenue: joi.number().required(),
+    })
+}
+
 joiSchema.removeCompanySchema = {
     query: joi.object({
         companyId: joi.string().required()
