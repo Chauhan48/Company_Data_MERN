@@ -18,3 +18,12 @@ export const deleteCompany = async (companyId) => {
         return err;
     }
 }
+
+export const updateCompany = async () => {
+    try {
+        const response = await axios.put(`${API}/update-company`);
+        return response.data;
+    } catch (err) {
+        return err;
+    }
+}
