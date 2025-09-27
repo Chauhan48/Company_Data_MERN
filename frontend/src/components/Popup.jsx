@@ -9,7 +9,7 @@ export default function Popup({ updatedData, displayMessage }) {
   const handleClose = () => setOpen(false);
 
   const handleUpdate = async () => {
-    const response = await updateCompany(updatedData);
+    const response = await updateCompany(companyData);
     displayMessage(response.message);
     setOpen(false);
   };
