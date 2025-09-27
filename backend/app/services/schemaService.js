@@ -13,4 +13,10 @@ joiSchema.addCompanySchema = {
     })
 }
 
+joiSchema.removeCompanySchema = {
+    query: joi.object({
+        companyId: joi.string().required()
+    })
+}
+
 module.exports = joiSchema;

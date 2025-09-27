@@ -8,4 +8,6 @@ companyRoutes.post('/add-company', schemaValidation(joiSchema.addCompanySchema),
 
 companyRoutes.get('/list-companies', companyController.listCompanies);
 
+companyRoutes.delete('/remove-company', schemaValidation(joiSchema.removeCompanySchema), companyController.deleteCompany);
+
 module.exports = companyRoutes;
