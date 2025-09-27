@@ -35,7 +35,7 @@ export default function CompanyCard({ company, performAction }) {
                 updatedData={company}
                 displayMessage={handleUpdateMessage}
             />}
-            <Card sx={{ maxWidth: 345, margin: 'auto', m: 2, boxShadow: 3, borderRadius: 2 }}>
+            <Card sx={{ maxWidth: 345, margin: 'auto', m: 2, boxShadow: 4 }}>
                 <CardActionArea sx={{ p: 4, height: '100%' }}>
                     <Typography variant="h5" component="div" gutterBottom>
                         {company.name}
@@ -58,14 +58,14 @@ export default function CompanyCard({ company, performAction }) {
                 </CardActionArea>
                 <Button
                     variant='outlined'
-                    fullWidth sx={{ mb: 1, borderRadius: 2, textTransform: 'none', fontWeight: '500' }}
+                    fullWidth sx={{ mb: 1, borderRadius: 1, textTransform: 'none', fontWeight: '500' }}
                     onClick={handleUpdate}
                 >Update</Button>
                 <Button
                     variant='outlined'
                     color="error"
                     startIcon={<DeleteIcon />}
-                    fullWidth sx={{ borderRadius: 2, textTransform: 'none', fontWeight: '500' }}
+                    fullWidth sx={{ borderRadius: 1, textTransform: 'none', fontWeight: '500' }}
                     onClick={handleDelete}
                 >Delete</Button>
             </Card>
