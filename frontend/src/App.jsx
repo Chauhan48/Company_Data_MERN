@@ -1,10 +1,10 @@
-import CompanyCard from "./components/CompanyCard"
+import CompaniesList from "./components/CompaniesList"
 
 function App() {
 
   return (
     <>
-      <CompanyCard />
+      <CompaniesList />
     </>
   )
 }
