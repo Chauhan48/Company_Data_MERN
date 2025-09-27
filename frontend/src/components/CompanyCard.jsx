@@ -3,8 +3,20 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import CardActionArea from '@mui/material/CardActionArea';
+import { deleteCompany } from '../services/apiServices';
+import { useState } from 'react';
 
-export default function CompanyCard({ company }){
+export default function CompanyCard({ company, performAction }) {
+
+    const handleUpdate = () => {
+
+    }
+
+    const handleDelete = async () => {
+        const response = await deleteCompany(company._id);
+        performAction(response.message);
+    }
+
     return (
         <>
             <Card sx={{ maxWidth: 345, margin: 'auto', m: 2, boxShadow: 3, borderRadius: 2 }}>
@@ -28,8 +40,18 @@ export default function CompanyCard({ company }){
                         Revenue: ${company.revenue}
                     </Typography>
                 </CardActionArea>
-                    <Button variant='outlined' fullWidth sx={{ mb: 1, borderRadius: 2, textTransform: 'none', fontWeight: '500' }} >Update</Button>
-                    <Button variant='outlined' color="error" startIcon={<DeleteIcon />} fullWidth sx={{ borderRadius: 2, textTransform: 'none', fontWeight: '500' }} >Delete</Button>
+                <Button
+                    variant='outlined'
+                    fullWidth sx={{ mb: 1, borderRadius: 2, textTransform: 'none', fontWeight: '500' }}
+                    onClick={handleUpdate}
+                >Update</Button>
+                <Button
+                    variant='outlined'
+                    color="error"
+                    startIcon={<DeleteIcon />}
+                    fullWidth sx={{ borderRadius: 2, textTransform: 'none', fontWeight: '500' }}
+                    onClick={handleDelete}
+                >Delete</Button>
             </Card>
         </>
     )
