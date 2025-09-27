@@ -20,7 +20,7 @@ companyController.addCompany = async (req, res) => {
 
 companyController.listCompanies = async (req, res) => {
     try {
-        const companiesList = await companies.find();
+        const companiesList = await companies.find({}, {__v: 0});
         const industries = await companies.distinct('industry');
         const location = await companies.distinct('location');
         return res.status(200).json({ companiesList, industries, location });

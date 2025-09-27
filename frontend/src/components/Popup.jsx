@@ -2,7 +2,7 @@ import { Box, Button, Modal, Stack, TextField, Typography } from "@mui/material"
 import { useState } from "react";
 import { updateCompany } from "../services/apiServices";
 
-export default function Popup({ updatedData }) {
+export default function Popup({ updatedData, displayMessage }) {
   const [open, setOpen] = useState(true);
   const [companyData, setCompanyData] = useState(updatedData);
 
@@ -10,6 +10,7 @@ export default function Popup({ updatedData }) {
 
   const handleUpdate = async () => {
     const response = await updateCompany(updatedData);
+    displayMessage(response.message);
     setOpen(false);
   };
 
