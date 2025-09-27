@@ -2,20 +2,17 @@ import { Box, Button, Modal, Stack, TextField, Typography } from "@mui/material"
 import { useState } from "react";
 import { updateCompany } from "../services/apiServices";
 
-export default function Popup({ updatedData, displayMessage }) {
-  const [open, setOpen] = useState(true);
+export default function Popup({ open, closePopup, updatedData, displayMessage }) {
   const [companyData, setCompanyData] = useState(updatedData);
-
-  const handleClose = () => setOpen(false);
 
   const handleUpdate = async () => {
     const response = await updateCompany(companyData);
     displayMessage(response.message);
-    setOpen(false);
+    closePopup();
   };
 
   return (
-    <Modal open={open} onClose={handleClose}>
+    <Modal open={open} onClose={closePopup}>
       <Box
         sx={{
           position: "absolute",

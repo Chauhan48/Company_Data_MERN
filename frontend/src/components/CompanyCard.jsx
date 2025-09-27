@@ -14,6 +14,10 @@ export default function CompanyCard({ company, performAction }) {
         setOpenPopup(true);
     }
 
+    const handleClosePopup = () => {
+        setOpenPopup(false);
+    }
+
     const handleDelete = async () => {
         const response = await deleteCompany(company._id);
         performAction(response.message);
@@ -25,7 +29,12 @@ export default function CompanyCard({ company, performAction }) {
 
     return (
         <>
-            {openPopup && <Popup updatedData={company} displayMessage={handleUpdateMessage} />}
+            {openPopup && <Popup
+                open={openPopup}
+                closePopup={handleClosePopup}
+                updatedData={company}
+                displayMessage={handleUpdateMessage}
+            />}
             <Card sx={{ maxWidth: 345, margin: 'auto', m: 2, boxShadow: 3, borderRadius: 2 }}>
                 <CardActionArea sx={{ p: 4, height: '100%' }}>
                     <Typography variant="h5" component="div" gutterBottom>
