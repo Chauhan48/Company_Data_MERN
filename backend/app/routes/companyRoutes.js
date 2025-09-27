@@ -6,4 +6,6 @@ const companyRoutes = require('express').Router();
 
 companyRoutes.post('/add-company', schemaValidation(joiSchema.addCompanySchema), companyController.addCompany);
 
+companyRoutes.get('/list-companies', companyController.listCompanies);
+
 module.exports = companyRoutes;

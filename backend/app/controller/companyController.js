@@ -18,4 +18,13 @@ companyController.addCompany = async (req, res) => {
     }
 }
 
+companyController.listCompanies = async (req, res) => {
+    try{
+        const companiesList = await companies.find();
+        return res.status(200).json({companiesList});
+    }catch(err){
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
 module.exports = companyController;
