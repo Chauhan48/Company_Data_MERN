@@ -11,10 +11,14 @@ export default function CompaniesList() {
     const [action, setAction] = useState(false);
     const [actionMessage, setActionMessage] = useState('');
 
-    const handleAlertMessage = (message) => {
+    const handleAlertMessage = async (message) => {
+        const list = await companyList();
+        setCompanies(list.companiesList);
+        setIndustries(list.industries);
+        setLocation(list.location);
         setActionMessage(message);
         setAction(true);
-        setTimeout(() => setAction(false), 1050);
+        setTimeout(() => setAction(false), 2000);
     }
 
     useEffect(() => {
