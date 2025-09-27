@@ -19,9 +19,9 @@ export const deleteCompany = async (companyId) => {
     }
 }
 
-export const updateCompany = async () => {
+export const updateCompany = async (updatedData) => {
     try {
-        const response = await axios.put(`${API}/update-company`);
+        const response = await axios.put(`${API}/update-company`, updatedData);
         return response.data;
     } catch (err) {
         return err;

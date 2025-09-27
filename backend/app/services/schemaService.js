@@ -15,7 +15,7 @@ joiSchema.addCompanySchema = {
 
 joiSchema.updateCompanySchema = {
     body: joi.object({
-        id: joi.string().required(),
+        _id: joi.string().required(),
         name: joi.string().required(),
         industry: joi.string().required(),
         location: joi.string().required(),

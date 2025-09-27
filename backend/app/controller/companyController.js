@@ -46,7 +46,7 @@ companyController.deleteCompany = async (req, res) => {
 companyController.updateCompany = async (req, res) => {
     try{
         const companyData = req.body;
-        const updatedData = await companies.findByIdAndUpdate(companyData.id, 
+        const updatedData = await companies.findByIdAndUpdate(companyData._id, 
             {
                 name: companyData.name,
                 industry: companyData.industry,
