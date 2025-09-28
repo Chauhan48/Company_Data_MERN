@@ -3,10 +3,11 @@ import CompanyCard from "./CompanyCard";
 import { companyList, filterCompany } from "../services/apiServices";
 import Grid from "@mui/material/Grid";
 import Message from "./Message";
-import { Button } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import Dropdown from "./Dropdown";
 import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
 import ClearIcon from '@mui/icons-material/Clear';
+import BusinessIcon from '@mui/icons-material/Business';
 
 export default function CompaniesList() {
     const [companies, setCompanies] = useState([]);
@@ -67,16 +68,25 @@ export default function CompaniesList() {
     return (
         <>
             {action && <Message message={actionMessage} />}
-            <Dropdown filterList={industries} field={'Industries'} applyFilter={handleFilter} />
-            <Dropdown filterList={location} field={'Location'} applyFilter={handleFilter} />
-            <Button variant="contained" sx={{ m: 1 }} startIcon={<FilterListAltIcon />} onClick={updateCompanyListing}>Filter</Button>
-            <Button variant="outlined" sx={{ m: 1 }} startIcon={<ClearIcon />} onClick={removeFilterListing}>Reset Filters</Button>
-            <Grid container spacing={4} sx={{ padding: 4 }}>
-                {companies.map(company => (
-                    <Grid item key={company._id} xs={12} sm={6} md={4}>
-                        <CompanyCard company={company} performAction={handleAlertMessage} />
-                    </Grid>
-                ))}
+            <Typography variant="h4" sx={{fontWeightMedium: 500, color: '#979797', marginLeft: '50%', marginRight: '28%'}}>Explore Companies</Typography>
+            <Button variant="contained" color="secondary" align="end" size="large" sx={{p: 1, m: 1, justifyContent: 'end', borderRadius: '40px'}} startIcon={<BusinessIcon />}>Add Company</Button>
+            <Grid container spacing={2}>
+                <Grid size={2} sx={{borderRight: '1px solid'}}>
+
+                    <Dropdown filterList={industries} field={'Industries'} applyFilter={handleFilter} />
+                    <Dropdown filterList={location} field={'Location'} applyFilter={handleFilter} />
+                    <Button variant="contained" sx={{ m: 1 }} startIcon={<FilterListAltIcon />} onClick={updateCompanyListing}>Filter</Button>
+                    <Button variant="outlined" sx={{ m: 1 }} startIcon={<ClearIcon />} onClick={removeFilterListing}>Reset Filters</Button>
+                </Grid>
+
+                <Grid container size={10} spacing={4} sx={{ padding: 4 }}>
+                    {companies.map(company => (
+                        <Grid item key={company._id} xs={12} sm={6} md={4}>
+                            <CompanyCard company={company} performAction={handleAlertMessage} />
+                        </Grid>
+                    ))}
+                </Grid>
+
             </Grid>
         </>
     )
