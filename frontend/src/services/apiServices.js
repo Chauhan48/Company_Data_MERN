@@ -37,3 +37,12 @@ export const filterCompany = async (filterData = {}) => {
         return err;
     }
 }
+
+export const addCompany = async (companyData) => {
+    try {
+        const response = await axios.post(`${API}/add-company`, companyData);
+        return response.data;
+    } catch (err) {
+        return err;
+    }
+}
