@@ -1,0 +1,30 @@
+{
+  "name": "anshit_chauhan_task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start:frontend": "cd frontend && npm run dev",
+    "start:backend": "cd backend && npm start",
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chauhan48/Company_Data_MERN.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Chauhan48/Company_Data_MERN/issues"
+  },
+  "homepage": "https://github.com/Chauhan48/Company_Data_MERN#readme",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
