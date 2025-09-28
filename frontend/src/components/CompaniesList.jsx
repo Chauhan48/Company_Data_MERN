@@ -5,6 +5,8 @@ import Grid from "@mui/material/Grid";
 import Message from "./Message";
 import { Button } from "@mui/material";
 import Dropdown from "./Dropdown";
+import FilterListAltIcon from '@mui/icons-material/FilterListAlt';
+import ClearIcon from '@mui/icons-material/Clear';
 
 export default function CompaniesList() {
     const [companies, setCompanies] = useState([]);
@@ -47,11 +49,9 @@ export default function CompaniesList() {
         setCompanies(listing.companyListing);
     }
 
-    const removeFilterListing = async () => {
-        const list = await companyList();
-        setCompanies(list.companiesList);
-        setIndustries(list.industries);
-        setLocation(list.location);
+    const removeFilterListing = () => {
+        window.location.reload();
+
     }
 
     useEffect(() => {
@@ -69,8 +69,8 @@ export default function CompaniesList() {
             {action && <Message message={actionMessage} />}
             <Dropdown filterList={industries} field={'Industries'} applyFilter={handleFilter} />
             <Dropdown filterList={location} field={'Location'} applyFilter={handleFilter} />
-            <Button variant="contained" sx={{ m: 1 }} onClick={updateCompanyListing}>Filter</Button>
-            <Button variant="outlined" sx={{ m: 1 }} onClick={removeFilterListing}>Remove Filter</Button>
+            <Button variant="contained" sx={{ m: 1 }} startIcon={<FilterListAltIcon />} onClick={updateCompanyListing}>Filter</Button>
+            <Button variant="outlined" sx={{ m: 1 }} startIcon={<ClearIcon />} onClick={removeFilterListing}>Reset Filters</Button>
             <Grid container spacing={4} sx={{ padding: 4 }}>
                 {companies.map(company => (
                     <Grid item key={company._id} xs={12} sm={6} md={4}>
