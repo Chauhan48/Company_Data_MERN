@@ -25,10 +25,12 @@ The goal was to build a clean, intuitive interface on the frontend with powerful
   - JavaScript (ES6+) with hooks and functional components
 
 ## Folder Structure
-|-backend # Node.js and Express REST API with MongoDB
-|-frontend # React application with Material UI and Vite
-|-package.json # Root package file to manage scripts for both frontend and backend
-|-README.md # documentation file
+```
+|- backend
+|- frontend
+|- package.json
+|- README.md
+```
 
 ## Getting Started
 
