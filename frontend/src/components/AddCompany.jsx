@@ -28,7 +28,7 @@ export default function AddCompany({ open, closePopup, newCompanyData, displayMe
         }}
       >
         <Typography variant="h6" mb={2} fontWeight="bold" textAlign="center">
-          Update Company
+          Add Company
         </Typography>
 
         <Stack spacing={2}>
