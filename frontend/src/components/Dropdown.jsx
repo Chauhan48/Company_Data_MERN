@@ -4,11 +4,12 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import { useState } from 'react';
 
-export default function Dropdown({ filterList, field }) {
+export default function Dropdown({ filterList, field, applyFilter }) {
     const [options, setOptions] = useState('');
 
     const handleChange = (event) => {
         setOptions(event.target.value);
+        applyFilter(field, event.target.value);
     };
     return (
         <>

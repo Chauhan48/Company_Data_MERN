@@ -12,6 +12,8 @@ export default function CompaniesList() {
     const [location, setLocation] = useState([]);
     const [action, setAction] = useState(false);
     const [actionMessage, setActionMessage] = useState('');
+    const [filterIndustry, setFilterIndustry] = useState('');
+    const [filterLocation, setFilterLocation] = useState('');
 
     const handleAlertMessage = async (message) => {
         const list = await companyList();
@@ -21,6 +23,20 @@ export default function CompaniesList() {
         setActionMessage(message);
         setAction(true);
         setTimeout(() => setAction(false), 2000);
+    }
+
+    const handleFilter = async (field, option) => {
+        let fd = field.toLowerCase();
+        if(fd === 'industries'){
+            setFilterIndustry(option);
+        }
+        if(fd === 'location'){
+            setFilterLocation(option);
+        }
+    }
+
+    const updateCompanyListing = () => {
+        console.log(filterIndustry, filterLocation);
     }
 
     useEffect(() => {
@@ -36,8 +52,9 @@ export default function CompaniesList() {
     return (
         <>
             {action && <Message message={actionMessage} />}
-            <Dropdown filterList={industries} field={'Induxtries'} />
-            <Dropdown filterList={location} field={'Location'} />
+            <Dropdown filterList={industries} field={'Industries'} applyFilter={handleFilter} />
+            <Dropdown filterList={location} field={'Location'} applyFilter={handleFilter} />
+            <Button variant="contained" sx={{ m: 1 }} onClick={updateCompanyListing}>Filter</Button>
             <Grid container spacing={4} sx={{ padding: 4 }}>
                 {companies.map(company => (
                     <Grid item key={company._id} xs={12} sm={6} md={4}>
