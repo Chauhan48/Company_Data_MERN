@@ -20,7 +20,7 @@ companyController.addCompany = async (req, res) => {
 
 companyController.listCompanies = async (req, res) => {
     try {
-        const companiesList = await companies.find({}, {__v: 0});
+        const companiesList = await companies.find({}, { __v: 0 });
         const industries = await companies.distinct('industry');
         const location = await companies.distinct('location');
         return res.status(200).json({ companiesList, industries, location });
@@ -44,9 +44,9 @@ companyController.deleteCompany = async (req, res) => {
 }
 
 companyController.updateCompany = async (req, res) => {
-    try{
+    try {
         const companyData = req.body;
-        const updatedData = await companies.findByIdAndUpdate(companyData._id, 
+        const updatedData = await companies.findByIdAndUpdate(companyData._id,
             {
                 name: companyData.name,
                 industry: companyData.industry,
@@ -57,10 +57,28 @@ companyController.updateCompany = async (req, res) => {
             }
         )
 
-        if(!updatedData){
+        if (!updatedData) {
             return res.status(404).json({ message: 'Company not found' });
         }
         return res.status(200).json({ message: 'Data updated successfully' });
+    } catch (err) {
+        return res.status(500).json({ message: 'Internal server error' });
+    }
+}
+
+companyController.filterCompany = async (req, res) => {
+    try {
+        const filter = req.query;
+        const query = {};
+        if(Object.hasOwn(filter, 'industry')){
+            query.industry = filter.industry
+        }
+        if(Object.hasOwn(filter, 'location')){
+            query.location = filter.location
+        }
+        const companyListing = await companies.find(query, {__v: 0});
+        return res.status(200).json({companyListing});
+
     } catch (err) {
         return res.status(500).json({ message: 'Internal server error' });
     }

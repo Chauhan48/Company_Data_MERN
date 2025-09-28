@@ -31,4 +31,11 @@ joiSchema.removeCompanySchema = {
     })
 }
 
+joiSchema.filterCompanySchema = {
+    query: joi.object({
+        industry: joi.string().optional(),
+        location: joi.string().optional()
+    })
+}
+
 module.exports = joiSchema;

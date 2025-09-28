@@ -12,4 +12,6 @@ companyRoutes.delete('/remove-company', schemaValidation(joiSchema.removeCompany
 
 companyRoutes.put('/update-company', schemaValidation(joiSchema.updateCompanySchema), companyController.updateCompany);
 
+companyRoutes.get('/filter-companies', schemaValidation(joiSchema.filterCompanySchema), companyController.filterCompany);
+
 module.exports = companyRoutes;
