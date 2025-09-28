@@ -4,6 +4,7 @@ import { companyList } from "../services/apiServices";
 import Grid from "@mui/material/Grid";
 import Message from "./Message";
 import { Button } from "@mui/material";
+import Dropdown from "./Dropdown";
 
 export default function CompaniesList() {
     const [companies, setCompanies] = useState([]);
@@ -35,7 +36,8 @@ export default function CompaniesList() {
     return (
         <>
             {action && <Message message={actionMessage} />}
-            <Button>Filter</Button>
+            <Dropdown filterList={industries} field={'Induxtries'} />
+            <Dropdown filterList={location} field={'Location'} />
             <Grid container spacing={4} sx={{ padding: 4 }}>
                 {companies.map(company => (
                     <Grid item key={company._id} xs={12} sm={6} md={4}>
