@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import CompanyCard from "./CompanyCard";
-import { companyList } from "../services/apiServices";
+import { companyList, filterCompany } from "../services/apiServices";
 import Grid from "@mui/material/Grid";
 import Message from "./Message";
 import { Button } from "@mui/material";
@@ -27,16 +27,31 @@ export default function CompaniesList() {
 
     const handleFilter = async (field, option) => {
         let fd = field.toLowerCase();
-        if(fd === 'industries'){
+        if (fd === 'industries') {
             setFilterIndustry(option);
         }
-        if(fd === 'location'){
+        if (fd === 'location') {
             setFilterLocation(option);
         }
     }
 
-    const updateCompanyListing = () => {
-        console.log(filterIndustry, filterLocation);
+    const updateCompanyListing = async () => {
+        const filterData = {};
+        if (filterIndustry) {
+            filterData.industry = filterIndustry
+        }
+        if (filterLocation) {
+            filterData.location = filterLocation
+        }
+        const listing = await filterCompany(filterData);
+        setCompanies(listing.companyListing);
+    }
+
+    const removeFilterListing = async () => {
+        const list = await companyList();
+        setCompanies(list.companiesList);
+        setIndustries(list.industries);
+        setLocation(list.location);
     }
 
     useEffect(() => {
@@ -55,6 +70,7 @@ export default function CompaniesList() {
             <Dropdown filterList={industries} field={'Industries'} applyFilter={handleFilter} />
             <Dropdown filterList={location} field={'Location'} applyFilter={handleFilter} />
             <Button variant="contained" sx={{ m: 1 }} onClick={updateCompanyListing}>Filter</Button>
+            <Button variant="outlined" sx={{ m: 1 }} onClick={removeFilterListing}>Remove Filter</Button>
             <Grid container spacing={4} sx={{ padding: 4 }}>
                 {companies.map(company => (
                     <Grid item key={company._id} xs={12} sm={6} md={4}>

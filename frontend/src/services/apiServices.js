@@ -27,3 +27,13 @@ export const updateCompany = async (updatedData) => {
         return err;
     }
 }
+
+export const filterCompany = async (filterData = {}) => {
+    try {
+        const queryString = new URLSearchParams(filterData).toString();
+        const response = await axios.get(`${API}/filter-companies?${queryString}`);
+        return response.data;
+    } catch (err) {
+        return err;
+    }
+}
